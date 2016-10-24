@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application' //应用android插件
+
+android {
+    //指定用来编译的android api 版本号
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    //指定sdk构建工具版本
+    buildToolsVersion BUILD_TOOLS_VERSION
+
+
+    defaultConfig {//默认配置
+        //app的唯一标识
+        applicationId "play.club.silkpaints"
+        //指定最低的支持api版本
+        minSdkVersion MIN_SDK_VERSION
+        //指定用来测试的api版本
+        targetSdkVersion TARGET_SDK_VERSION
+        //app 的代码修改次数版本
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+        //支持分包
+        multiDexEnabled true
+    }
+
+    lintOptions{
+        //忽略lint错误
+        abortOnError false
+    }
+
+    signingConfigs{
+        release{
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASSWORD
+            storeFile file(STORE_FILE)
+            storePassword STORE_PASSWORD
+        }
+    }
+
+    buildTypes {
+        debug{
+            //debug
+        }
+
+        release {
+            //代码混淆
+            minifyEnabled false
+            //代码混淆使用的配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+            //移除没用的资源
+            shrinkResources true
+            //资源文件对齐
+            zipAlignEnabled true
+        }
+    }
+
+    productFlavors{
+        //多渠道打包
+        dev{
+            //这里可以使用不同的applicationId 即可认为是两个不同的app，可以同时安装在一套设备上
+            //便于调试
+            applicationIdSuffix ".debug"
+        }
+
+        googleplay{}
+        baidu{}
+        xiaomi{}
+        tencent{}
+        anzhi{}
+    }
+
+    //指定apk输出格式
+    getApplicationVariants.all{
+        variant->
+            variant.outputs.each{
+                output->
+                    output.outputFile=new File(output.outputFile.parent,)
+            }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile project(':artsilk')
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:support-v4:23.2.1'
+    compile project(':svg')
+}

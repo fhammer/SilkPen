@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ArtPen</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_width">线宽</string>
+    <string name="action_radius">半径</string>
+    <string name="action_bgcolors">背景颜色</string>
+    <string name="action_colors">颜色</string>
+    <string name="action_save">保存</string>
+    <string name="action_clear">清除</string>
+    <string name="action_undo">撤销</string>
+    <string name="action_redo">前进</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
